@@ -25,6 +25,14 @@ var EventSchema = mongoose.Schema({
     eventCoordinators:{
         type: String,
         required:true
+    },
+    eventStatus:{
+        type: String,
+        required:true
+    },
+    participatedStudents: {
+        type: Number,
+        required:true
     }
 })
 // Compile model from schema

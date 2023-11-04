@@ -3,12 +3,29 @@ const cors = require('cors')
 const LoginRoutes = require('./Routes/login.routes')
 const EventRoutes = require('./Routes/event.routes')
 const resetPasswordRouter = require('./Routes/resetPassword.routes')
+const cron=require('node-cron');
+const EventModel = require('./modals/event.modal');
+
+
 const app = express()
 const db=require('./db/db.connection').DatabaseConnection()
 app.use(cors())
 app.use('/api/auth', LoginRoutes)
 app.use('/api/event/', EventRoutes)
 app.use('/api/update/', resetPasswordRouter)
+
+cron.schedule('0 0 * * *', async () => {
+    try {
+      const currentDate = new Date();
+      await EventModel.updateMany(
+        { endDate: { $lt: currentDate }, eventStatus: { $ne: 'completed' } },
+        { $set: { eventStatus: 'completed' } }
+      );
+      console.log('Updated event statuses.');
+    } catch (error) {
+      console.error('Error updating event statuses:', error);
+    }
+  })
 
 const port = process.env.PORT || 5000
 app.listen(port, (req,res) => {

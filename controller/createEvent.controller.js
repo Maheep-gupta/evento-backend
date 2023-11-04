@@ -10,6 +10,8 @@ const CreateEvent = async (req, res) => {
                 startDate:req.body.startDate,
                 endDate:req.body.endDate,
                 eventDetail:req.body.eventdetails,
+                eventStatus:req.body.eventStatus,
+                participatedStudents:req.body.participatedStudents,
                 eventCoordinators:req.body.eventCoordinators
             }
             
