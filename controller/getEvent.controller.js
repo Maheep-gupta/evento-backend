@@ -9,7 +9,7 @@ const GetEvent = async (req,res) => {
         })
     } else {
         res.json({
-            'data':events,
+            'eventData':events,
             'message': 'Events Send Successfully',
             'statusCode': 400,
         }) 
