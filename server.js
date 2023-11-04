@@ -1,10 +1,11 @@
-const express=require('express')
+const express = require('express')
+const cors = require('cors')
 const LoginRoutes = require('./Routes/login.routes')
 const EventRoutes = require('./Routes/event.routes')
 const resetPasswordRouter = require('./Routes/resetPassword.routes')
 const app = express()
 const db=require('./db/db.connection').DatabaseConnection()
-
+app.use(cors())
 app.use('/api/auth', LoginRoutes)
 app.use('/api/event/', EventRoutes)
 app.use('/api/update/', resetPasswordRouter)
