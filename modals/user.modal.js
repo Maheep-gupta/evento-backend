@@ -20,7 +20,13 @@ const UserSchema = new mongoose.Schema({
     otp: {
         type: String,
         default:null
+    },
+    participatedEvents: {
+        type: [String],
+        default:null
     }
-})
+},{
+    timestamps: true,
+  })
 const userModal = mongoose.model('users', UserSchema)
 module.exports=userModal
