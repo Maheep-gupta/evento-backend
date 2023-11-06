@@ -1,19 +1,28 @@
+const EventModel = require("../modals/event.modal");
 const userModal = require("../modals/user.modal");
 
 const RegisterEventController = async (req, res) => {
     const userId = req.params.userId
-    const userExists = await userModal.exists({ collegeId: userId })
-    if (userExists !== null) {
-        const userInfo = await userModal.findById(userExists._id)
-        if (userInfo.participatedEvents.includes(req.body.eventName)) {
+    const fetchUser = await userModal.exists({ collegeId: userId })
+    if (fetchUser !== null) {
+        const userInfo = await userModal.findById(fetchUser._id)
+        const fetchEvent = await EventModel.findById(req.body.eventId)
+
+        const EventExists = await userInfo.participatedEvents.some((event) => event._id.toString() === req.body.eventId)
+        
+        console.log(EventExists);
+
+
+
+        if (EventExists) {
             res.json({
                 'message': "Already registered",
                 'statusCode': 400
             })
         } else {
-            const UpdatedParticipatedEvent = await userModal.updateOne({ collegeId: userId }, { $push: { participatedEvents: req.body.eventName } })
+            const UpdatedParticipatedEvent = await userModal.updateOne({ collegeId: userId }, { $push: { participatedEvents: fetchEvent } })
             console.log(UpdatedParticipatedEvent);
-            const reFetchedUserInfo = await userModal.findById(userExists._id)
+            const reFetchedUserInfo = await userModal.findById(fetchUser._id)
             res.json({
 
                 "data": reFetchedUserInfo,

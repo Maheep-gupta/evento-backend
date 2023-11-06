@@ -22,7 +22,10 @@ const UserSchema = new mongoose.Schema({
         default:null
     },
     participatedEvents: {
-        type: [String],
+        type: [{
+            type: mongoose.Schema.Types.Mixed,
+            ref:'events'
+        }],
         default:null
     }
 },{
