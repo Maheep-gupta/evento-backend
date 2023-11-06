@@ -8,7 +8,9 @@ const RegisterEventController = async (req, res) => {
         const userInfo = await userModal.findById(fetchUser._id)
         const fetchEvent = await EventModel.findById(req.body.eventId)
 
-        const EventExists = await userInfo.participatedEvents.some((event) => event._id.toString() === req.body.eventId)
+        const EventExists = await userInfo.participatedEvents.some(
+            (event) => { event._id.toString() === req.body.eventId }
+        )
         
         console.log(EventExists);
 
@@ -27,7 +29,7 @@ const RegisterEventController = async (req, res) => {
 
                 "data": reFetchedUserInfo,
                 'message': "Registered SuccessFully",
-                'statusCode': 400
+                'statusCode': 200
             })
         }
 

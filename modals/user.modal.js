@@ -25,8 +25,7 @@ const UserSchema = new mongoose.Schema({
         type: [{
             type: mongoose.Schema.Types.Mixed,
             ref:'events'
-        }],
-        default:null
+        }]
     }
 },{
     timestamps: true,
