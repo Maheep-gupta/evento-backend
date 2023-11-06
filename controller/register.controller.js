@@ -26,7 +26,7 @@ const RegisterEventController = async (req, res) => {
             res.json({
 
                 "data": reFetchedUserInfo,
-                'message': "Data Found Successfully",
+                'message': "Registered SuccessFully",
                 'statusCode': 400
             })
         }
