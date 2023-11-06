@@ -9,10 +9,12 @@ const RegisterEventController = async (req, res) => {
         const fetchEvent = await EventModel.findById(req.body.eventId)
 
         const EventExists = await userInfo.participatedEvents.some(
-            (event) => { event._id.toString() === req.body.eventId }
+            (event) => {
+                console.log(event._id);
+                return event._id.toString() === req.body.eventId
+            }
         )
         
-        console.log(EventExists);
 
 
 
