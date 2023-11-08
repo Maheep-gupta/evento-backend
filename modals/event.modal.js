@@ -37,10 +37,7 @@ const EventSchema = mongoose.Schema({
     },
     eventImage: {
         type: String,
-        default:axios.get("https://source.unsplash.com/random/520x600/?Event,party,coding,sports"
-        ).then((res) => {
-            return res.data
-        })
+        default:"https://source.unsplash.com/random/520x600/?Event,party,coding,sports"
     }
 },{
     timestamps: true,
