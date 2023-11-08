@@ -5,6 +5,8 @@ const CollegeIdSchema = new mongoose.Schema({
         type: Number,
         required:true
     }
-})
+},{
+    timestamps: true,
+  })
 const collegeStudentDataModal = mongoose.model('collegeStudentData', CollegeIdSchema)
 module.exports=collegeStudentDataModal

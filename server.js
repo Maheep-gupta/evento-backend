@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const LoginRoutes = require('./Routes/login.routes')
 const EventRoutes = require('./Routes/event.routes')
+const Dashboard = require('./Routes/dashboard.routes')
 const resetPasswordRouter = require('./Routes/resetPassword.routes')
 const cron=require('node-cron');
 const EventModel = require('./modals/event.modal');
@@ -13,6 +14,7 @@ app.use(cors())
 app.use('/api/auth', LoginRoutes)
 app.use('/api/event/', EventRoutes)
 app.use('/api/update/', resetPasswordRouter)
+app.use('/api/dashboard/', Dashboard)
 
 // cron.schedule('0 0 * * *', async () => {
 //     try {

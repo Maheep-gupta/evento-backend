@@ -33,8 +33,14 @@ var EventSchema = mongoose.Schema({
     participatedStudents: {
         type: Number,
         required:true
+    },
+    eventImage: {
+        type: String,
+        default:"https://source.unsplash.com/random/520x600/?Event,party,coding,sports"
     }
-})
+},{
+    timestamps: true,
+  })
 // Compile model from schema
 const EventModel = mongoose.model('events', EventSchema);
 module.exports=EventModel
