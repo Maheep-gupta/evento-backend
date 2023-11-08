@@ -1,7 +1,8 @@
+const { default: axios } = require('axios');
 const mongoose = require('mongoose')
 
 
-var EventSchema = mongoose.Schema({
+const EventSchema = mongoose.Schema({
     eventName: {
         type: String,
         required:true
@@ -36,7 +37,10 @@ var EventSchema = mongoose.Schema({
     },
     eventImage: {
         type: String,
-        default:"https://source.unsplash.com/random/520x600/?Event,party,coding,sports"
+        default:axios.get("https://source.unsplash.com/random/520x600/?Event,party,coding,sports"
+        ).then((res) => {
+            return res.data
+        })
     }
 },{
     timestamps: true,
