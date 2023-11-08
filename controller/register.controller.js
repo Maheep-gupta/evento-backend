@@ -25,7 +25,13 @@ const RegisterEventController = async (req, res) => {
             })
         } else {
             const UpdatedParticipatedEvent = await userModal.updateOne({ collegeId: userId }, { $push: { participatedEvents: fetchEvent } })
-            console.log(UpdatedParticipatedEvent);
+
+            const UpdatedParticipatedEventInEventModal = await EventModel.updateOne({ _id: req.body.eventId}, { $inc: { participatedStudents: 1 } })
+            
+
+
+
+
             const reFetchedUserInfo = await userModal.findById(fetchUser._id)
             res.json({
 
