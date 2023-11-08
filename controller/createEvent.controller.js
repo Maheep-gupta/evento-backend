@@ -12,7 +12,8 @@ const CreateEvent = async (req, res) => {
                 eventDetail:req.body.eventdetails,
                 eventStatus:req.body.eventStatus,
                 participatedStudents:req.body.participatedStudents,
-                eventCoordinators:req.body.eventCoordinators
+                eventCoordinators: req.body.eventCoordinators,
+                eventImage:req.body.eventImage
             }
             
         )
