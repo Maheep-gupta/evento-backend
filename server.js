@@ -29,7 +29,7 @@ app.use('/api/dashboard/', Dashboard)
 //     }
 //   })
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8000
 app.listen(port, (req,res) => {
     console.log('Server Chalu Ho gya hai ',port)
 })
