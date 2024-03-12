@@ -1,34 +1,45 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const hashingFunction = require('../Utils/HashPassword');
 
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required:true
+        required: true
     },
     collegeId: {
         type: Number,
-        required:true
+        required: true
     },
     email: {
         type: String,
-        required:true
+        required: true
     },
     password: {
         type: String,
-        required:true
+        required: true
     },
     otp: {
         type: String,
-        default:null
+        default: null
     },
-    participatedEvents: {
-        type: [{
-            type: mongoose.Schema.Types.Mixed,
-            ref:'events'
-        }]
-    }
-},{
+    participatedEvents: [{
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'events'
+    }]
+}, {
     timestamps: true,
-  })
-const userModal = mongoose.model('users', UserSchema)
-module.exports=userModal
+});
+
+UserSchema.pre('save', async function (next) {
+    if (!(this.isModified('password'))) return next();
+    try {
+        this.password = await hashingFunction(this.password);
+        next();
+    } catch (error) {
+        next(error)
+    }
+});
+
+
+const userModal = mongoose.model('users', UserSchema);
+module.exports = userModal;

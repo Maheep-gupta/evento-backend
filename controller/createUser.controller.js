@@ -1,6 +1,6 @@
 const collegeStudentDataModal = require("../modals/colllegeData.model.js");
 const userModal = require("../modals/user.modal.js");
-const { hashPasswordUtlis } = require("../utli/HashPassword.js");
+const { hashPasswordUtlis } = require("../Utils/HashPassword.js");
 
 const CreateUserController = async (req, res) => {
     const authenticatedUser = await collegeStudentDataModal.exists({ collegeId: req.body.collegeId })
