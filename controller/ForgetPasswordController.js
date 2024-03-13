@@ -6,6 +6,7 @@ const ForgetPasswordController = async (req, res) => {
     const { collegeId } = req.body;
     const userExists = await User.exists({ collegeId: req.body.collegeId  })
     // const userExists = await User.exists({ email: req.body.email  })
+    l
     if (userExists != null) {
 
         const user=await User.findOne(userExists._id)

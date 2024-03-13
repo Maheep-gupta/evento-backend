@@ -10,7 +10,7 @@ const ResetPasswordController =async (req, res) => {
             statusCode:401
         })
     } else {
-        const userExists = await User.findOne({ collegeId: collegeId })
+        // const userExists = await User.findOne({ collegeId: collegeId })
         try {
             const userExists = await User.findOne({ collegeId: collegeId });
     

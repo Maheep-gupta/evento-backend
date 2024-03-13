@@ -4,7 +4,7 @@ const LoginRoutes = require('./Routes/login.routes')
 const EventRoutes = require('./Routes/event.routes')
 const Dashboard = require('./Routes/dashboard.routes')
 const resetPasswordRouter = require('./Routes/resetPassword.routes')
-const cron=require('node-cron');
+// const cron=require('node-cron');
 const EventModel = require('./modals/event.modal');
 
 

@@ -1,10 +1,10 @@
 const collegeStudentDataModal = require("../modals/colllegeData.model.js");
 const userModal = require("../modals/user.modal.js");
-const { hashPasswordUtlis } = require("../Utils/HashPassword.js");
+const hashingFunction = require("../Utils/HashPassword.js");
 
 const CreateUserController = async (req, res) => {
     const authenticatedUser = await collegeStudentDataModal.exists({ collegeId: req.body.collegeId })
-    const hashedPassword = await hashPasswordUtlis(req.body.password)
+    const hashedPassword = await hashingFunction(req.body.password)
     if (authenticatedUser !== null) {
         const userExists = await userModal.exists({ collegeId: req.body.collegeId })
         console.log(userExists);
